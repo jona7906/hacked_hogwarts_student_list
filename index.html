@@ -7,8 +7,92 @@
     <title>HACKED HOGWARTS STUDENT LIST/title></title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body></body>
+
+<body>
+
+<header>
+    <h1>HOGWARTS</h1>
+    <h2>School of Witchcraft and Wizardry</h2>
+    <div class="sectionwrapper">
+        <div id="inputsearch">
+        </div>
+        <div id="filter_dropdown">
+            <p>Filter by:</p>
+            <button class="filter" data-action="filter" data-filter="all">All</button>
+            <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
+            <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
+            <button class="filter" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
+            <button class="filter" data-action="filter" data-filter="slythein">Slytherin</button>
+            <button class="filter" data-action="filter" data-filter="squad">Inquisitorial Squad</button>
+            <button class="filter" data-action="filter" data-filter="expelled">Expelled Students</button>
+        </div>
+        <div id="sort_dropdown">
+            <p>Sort by:</p>
+            <button class="sort" data-action="sort" data-sort="firstname">Firstname</button>
+            <button class="sort" data-action="sort" data-sort="lastname">Lastname</button>
+            <button class="sort" data-action="sort" data-sort="gender">Gender</button>
+            <button class="sort" data-action="sort" data-sort="house">House</button>
+        </div>
+        <div class="textbox">
+            <div class="text_output">
+            </div>
+        </div>
+        <div class="textbox">
+            <div class="text_output">
+            </div>
+        </div>
+        <div class="textbox">
+            <div class="text_output">
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="grid_students">
+       <!-- student template will be cloned and inserted here -->
+</section>
+
+<section id="pop_up">
+       <!-- detailed student template will be cloned and inserted here -->
+</section>
     
+<template id="popupinfo">
+    <button id="close">&times;</button>
+<div class="img_grid">
+    <img data-field="image" class="image" src="" alt="">
+<div class="img_grid">
+    <div class="crest">
+    <img data-field="image" class="crestimage" src="" alt="">
+    <img data-field="infotext" class="crestname">
+</div>
+<div class="buttons_grid">
+        <button id="prefect_button" class="on_off"></button>
+        <button id="squad_button" class="on_off"></button>
+        <button id="captain_button" class="on_off"></button>
+</div>
+
+<div class="student_info">
+    <p class="infotext" data-field="firstname"></p>
+    <p class="infotext" data-field="middlename"></p>
+    <p class="infotext" data-field="lastname"></p>
+    <p class="infotext" data-field="nickname"></p>
+    <p class="infotext" data-field="bloodstatus"></p>
+</div>
+<div class="expelled_student">
+    <button id="expel_button" class="on_off"></button>
+</div>
+</template>
+
+<template id="student">
+    <article class="studentinfo">
+        <div id="studenttext">
+            <h2 data-field="firstname" class="name"></h2>
+            <h2 data-field="lastname" class="name"></h2>
+            <img data-field="image" class="image" src="" alt="">
+            <h3 data-field="housecrest"></h3>
+        </div>
+    </article>
+</template>
     <script src="hogwarts.js"></script>
-  </body>
+</body>
 </html>

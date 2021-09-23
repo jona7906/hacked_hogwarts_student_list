@@ -8,7 +8,7 @@ images:
  https://petlatkea.dk/2021/hogwarts/images.zip 
 
 
- - setting up list in html
+ ....HTML:
  
     - filter buttons
         - house
@@ -24,4 +24,27 @@ images:
     - student first name, middle name, evt nickname, last name, house, 
     - display in grid?
  - setting up css
+
+
+ ....CODE
+
+ CREATE OBJECTS FROM JSON:
+
+ - load json
+ - prapare data
+
+ --getNameParts
+ --- firstName
+ --- middleName
+ --- lastName
+ --- nickName
+----- clean the data
+ -- getHouse
+
+ DISPLAY OBJECTS:
+ - hardcoded display one object 
+ - display each object
+
+ FILTER:
+ SORT:
  
