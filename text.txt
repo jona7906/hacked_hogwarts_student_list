@@ -9,11 +9,13 @@ images:
 
 
  - setting up list in html
+ 
     - filter buttons
         - house
         - expelled/non-expelled
         - member of inqustial squad
     - make filter buttons dropdown
+
     - sorting buttons
         - sort dir  
         - firstName
