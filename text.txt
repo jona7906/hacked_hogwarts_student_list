@@ -1,0 +1,25 @@
+families blod:
+https://petlatkea.dk/2021/hogwarts/families.json 
+
+json of students:
+The list of students is to be read from: https://petlatkea.dk/2021/hogwarts/students.json 
+
+images:
+ https://petlatkea.dk/2021/hogwarts/images.zip 
+
+
+ - setting up list in html
+    - filter buttons
+        - house
+        - expelled/non-expelled
+        - member of inqustial squad
+    - make filter buttons dropdown
+    - sorting buttons
+        - sort dir  
+        - firstName
+        - lastName
+        - captains 
+    - student first name, middle name, evt nickname, last name, house, 
+    - display in grid?
+ - setting up css
+ 
