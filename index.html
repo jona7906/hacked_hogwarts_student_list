@@ -68,20 +68,22 @@
     <img data-field="infotext" class="crestname">
 </div>
 <div class="buttons_grid">
-        <button id="prefect_button" class="on_off"></button>
-        <button id="squad_button" class="on_off"></button>
-        <button id="captain_button" class="on_off"></button>
+        <button id="prefect_button" data-action="button" data-field="prefect" data-status="off">PREFECT</button>
+    
+
+        <button id="squad_button" data-action="button" data-field="squad" data-status="off">SQUAD</button>
+        <button id="captain_button" data-action="button" data-field="captain" data-status="off">CAPTAIN</button>
 </div>
 
 <div class="student_info">
-    <p class="infotext" data-field="firstName">FIRSTNAME</p>
-    <p class="infotext" data-field="middleName">MIDDLENAME</p>
-    <p class="infotext" data-field="lastName">LASTNAME</p>
-    <p class="infotext" data-field="nickName">NICKNAME</p>
-    <p class="infotext" data-field="bloodStatus">BLOODSTATUS</p>
+    <p class="infotext" data-field="firstName">FIRST NAME: </p>
+    <p class="infotext" data-field="middleName">MIDDL ENAME: </p>
+    <p class="infotext" data-field="lastName">LAST NAME: </p>
+    <p class="infotext" data-field="nickName">NICK NAME: </p>
+    <p class="infotext" data-field="bloodStatus">BLOOD STATUS: </p>
 </div>
 <div class="expelled_student">
-    <button id="expel_button" class="on_off"></button>
+    <button id="expel_button" data-action="button" data-field="expell" data-status="off">EXPELL</button>
 </div>
 </template>
 

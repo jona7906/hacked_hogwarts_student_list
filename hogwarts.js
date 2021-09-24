@@ -7,8 +7,9 @@ let sortDir;
 // The prototype for all students:
 const Student = {
   squad: false,
-  status: true,
+  expell: false,
   prefect: false,
+  captain: false,
   firstName: "",
   middleName: "",
   lastName: "",
@@ -55,6 +56,7 @@ function prepareObject(jsonObject) {
   student.image = getStudentImg(student);
   student.house = cleanHouse(jsonObject.house);
   student.gender = capitalize(jsonObject.gender);
+
   return student;
 }
 
@@ -174,7 +176,20 @@ function filterStudents(students) {
   console.log(allStudents);
   console.log(filter);
   console.log("this is filtering students");
-  let filteredStudents = students.filter((student) => student.house.toLowerCase(0) === filter);
+  console.log("this is a studen filter " + student[filter]);
+  let filteredStudents;
+  if (filter === "gryffindor" || "ravenclaw" || "slytherin" || "hufflepuff") {
+    filteredStudents = students.filter((student) => student.house.toLowerCase(0) === filter);
+  }
+  if (filter === "squad") {
+    filteredStudents = students.filter((student) => student.squad === true);
+  }
+  if (filter === "captain") {
+    filteredStudents = students.filter((student) => student.captain === true);
+  }
+  if (filter === "expelled") {
+    filteredStudents = students.filter((student) => student.expell === true);
+  }
   if (filter === "*") {
     filteredStudents = students.filter((student) => student.firstName);
   }
@@ -205,14 +220,48 @@ function displayStudent(student) {
   clone.querySelector("article").addEventListener("click", showPopUp);
 
   function showPopUp() {
+    document.querySelector("#pop_up").style.display = "block";
+
     console.log(this);
     const clone = document.querySelector("template#popUpInfo").content.cloneNode(true);
-    clone.querySelector("[data-field=firstName]").textContent = student.firstName;
-    clone.querySelector("[data-field=middleName]").textContent = student.middleName;
-    clone.querySelector("[data-field=lastName]").textContent = student.lastName;
+    clone.querySelector("[data-field=firstName]").textContent += student.firstName;
+
+    clone.querySelector("[data-field=middleName]").textContent += student.middleName;
+    if (student.middleName === null) {
+      clone.querySelector("[data-field=middleName]").textContent = "";
+    }
+    clone.querySelector("[data-field=lastName]").textContent += student.lastName;
     clone.querySelector("[data-field=image]").src = student.image;
     clone.querySelector("[data-field=crest]").src = `images/${student.house}.png`;
+    /*     clone.querySelector("[data-field=squad]").addEventListener("click", setSquad);
+    clone.querySelector("[data-field=captain]").addEventListener("click", setCaptain); */
+    clone.querySelectorAll("[data-action='button']").forEach((button) => {
+      button.addEventListener("click", setSquad);
+    });
+    clone.querySelector("#close").addEventListener("click", removePopUp);
     /*  clone.querySelector("article").addEventListener("click", showPopUp); */
+    function setSquad(event) {
+      console.log(this);
+      let buttonId = event.target.dataset.field;
+
+      console.log(buttonId);
+
+      if (student[buttonId] === false) {
+        student[buttonId] = true;
+        event.target.dataset.status = "on";
+        console.log(buttonId);
+      } else {
+        student[buttonId] = false;
+        event.target.dataset.status = "off";
+        console.log(student[buttonId]);
+        console.log({ student });
+      }
+
+      buildList();
+    }
+
+    /*  */
+
     document.querySelector("#pop_up").appendChild(clone);
   }
 
@@ -220,4 +269,13 @@ function displayStudent(student) {
 
   // append clone to list
   document.querySelector("#grid_students").appendChild(clone);
+}
+
+function removePopUp() {
+  document.querySelector("#pop_up").style.display = "none";
+  document.querySelector("#pop_up").innerHTML = "";
+
+  /*  document.querySelectorAll(".infotext").forEach((text) => (text.textContent = ""));
+  document.querySelectorAll("#pop_up img").forEach((img) => (img.src = ""));
+  document.querySelectorAll("#pop_up button").forEach((button) => (button.innerHTML = "")); */
 }

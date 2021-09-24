@@ -93,3 +93,30 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+#pop_up{
+background-color: #e68a00;
+  display: block;
+  position: absolute;
+  width: fit-content;
+  z-index: 1; 
+  top: 40vw;
+}
+
+#pop_up [data-field="image"]{
+width: 30%;
+}
+
+#pop_up [data-field="crest"]{
+  width: 20%;
+  }
+
+  [data-status="off"]{
+    color: red;
+  }
+
+  [data-status="on"]{
+    color:green;
+  }
+
+
