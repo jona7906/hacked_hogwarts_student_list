@@ -1,7 +1,9 @@
 window.addEventListener("DOMContentLoaded", start);
 
 let allStudents = [];
-
+let filter = "*";
+let sort;
+let sortDir;
 // The prototype for all students:
 const Student = {
   squad: false,
@@ -17,6 +19,14 @@ const Student = {
 };
 
 function start() {
+  document.querySelectorAll("[data-action='filter']").forEach((filterButton) => {
+    filterButton.addEventListener("click", setFilter);
+  });
+
+  document.querySelectorAll("[data-action='sort']").forEach((sortButton) => {
+    sortButton.addEventListener("click", setSorting);
+  });
+
   console.log("les get this party started - wup wup");
   loadJSON();
 }
@@ -44,6 +54,7 @@ function prepareObject(jsonObject) {
   student.lastName = fullName.lastName;
   student.image = getStudentImg(student);
   student.house = cleanHouse(jsonObject.house);
+  student.gender = capitalize(jsonObject.gender);
   return student;
 }
 
@@ -110,10 +121,67 @@ function capitalize(str) {
   str = str.substring(0, 1).toLocaleUpperCase() + str.substring(1).toLocaleLowerCase();
   return str;
 }
+function setSorting(event) {
+  sort = event.target.dataset.sort;
+  sortDir = event.target.dataset.sortDirection;
+  if (sortDir === "asc") {
+    event.target.dataset.sortDirection = "desc";
+    console.log("this is asc");
+    sortDir = "desc";
+  } else {
+    event.target.dataset.sortDirection = "asc";
+    console.log("this is desc");
+    sortDir = "asc";
+  }
+  buildList();
+}
+
+function setFilter(event) {
+  filter = event.target.dataset.filter;
+  buildList();
+}
 
 function buildList() {
-  displayList(allStudents);
-  console.table(allStudents);
+  let currentList = filterStudents(allStudents);
+  let sortedCurrentList = sortStudents(currentList);
+  displayList(sortedCurrentList);
+  console.log("this is sorted and filtered list");
+  console.table(sortedCurrentList);
+}
+
+function sortStudents(students) {
+  let studentList = students;
+  let direction = 1;
+  if (sortDir === "asc") {
+    direction = -1;
+  } else {
+    direction = 1;
+  }
+  let sortedStudents = studentList.sort(compareStudents);
+
+  console.log(sort);
+  function compareStudents(a, b) {
+    if (a[sort] < b[sort]) {
+      return -1 * direction;
+    } else {
+      return 1 * direction;
+    }
+  }
+  return sortedStudents;
+}
+
+function filterStudents(students) {
+  console.log(allStudents);
+  console.log(filter);
+  console.log("this is filtering students");
+  let filteredStudents = students.filter((student) => student.house.toLowerCase(0) === filter);
+  if (filter === "*") {
+    filteredStudents = students.filter((student) => student.firstName);
+  }
+
+  console.log("this is " + filter);
+  console.table(filteredStudents);
+  return filteredStudents;
 }
 
 function displayList(students) {
