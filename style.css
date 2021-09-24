@@ -1,0 +1,9 @@
+*{
+  max-width: 100%;
+}
+
+#grid_students {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

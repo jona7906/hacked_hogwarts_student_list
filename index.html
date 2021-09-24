@@ -11,8 +11,10 @@
 <body>
 
 <header>
+  <img src="" alt="header_hogwarts">
     <h1>HOGWARTS</h1>
-    <h2>School of Witchcraft and Wizardry</h2>
+    <h2>School of Witchcraft and Wizardry</h2></header>
+    <section id="ui">
     <div class="sectionwrapper">
         <div id="inputsearch">
         </div>
@@ -46,7 +48,7 @@
             </div>
         </div>
     </div>
-</header>
+  </section>
 
 <section id="grid_students">
        <!-- student template will be cloned and inserted here -->
@@ -86,10 +88,11 @@
 <template id="student">
     <article class="studentinfo">
         <div id="studenttext">
-            <h2 data-field="firstname" class="name"></h2>
-            <h2 data-field="lastname" class="name"></h2>
+            <h2 data-field="firstName" class="name">NAME</h2>
+            <h2 data-field="middleName" class="name">MIDDLE NAME</h2>
+            <h2 data-field="lastName" class="name">LAST NAME</h2>
             <img data-field="image" class="image" src="" alt="">
-            <h3 data-field="housecrest"></h3>
+            <img data-field="crest">
         </div>
     </article>
 </template>

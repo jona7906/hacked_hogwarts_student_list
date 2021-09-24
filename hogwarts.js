@@ -38,14 +38,44 @@ function prepareObjects(jsonData) {
 function prepareObject(jsonObject) {
   const student = Object.create(Student);
   let fullName = jsonObject.fullname.trim();
-  fullName = getNameParts(fullName);
+  fullName = cleanNameParts(fullName);
   student.firstName = fullName.firstName;
   student.middleName = fullName.middleName;
   student.lastName = fullName.lastName;
+  student.image = getStudentImg(student);
+  student.house = cleanHouse(jsonObject.house);
   return student;
 }
 
-function getNameParts(fullName) {
+function cleanHouse(house) {
+  house = house.trim();
+  house = capitalize(house);
+  return house;
+}
+
+function getStudentImg(student) {
+  if (student.lastName.indexOf("-") === -1) {
+    let imagefirst = student.firstName.substring(0, 1);
+    let imagelast = student.lastName;
+    imgSrc = "images/" + imagelast + "_" + imagefirst + ".png";
+    imgSrc = imgSrc.toLowerCase();
+  } else {
+    /*  */
+    console.log("WOOOOOOOOOOOOOOOOEWOEWOOWEOWE" + student.lastName);
+    let lastNameHyphpen = student.lastName.split("-");
+    imagefirst = student.firstName.substring(0, 1);
+    imagelast = lastNameHyphpen[1];
+    imgSrc = imgSrc = "images/" + imagelast + "_" + imagefirst + ".png";
+    imgSrc = imgSrc.toLowerCase();
+  }
+  if (student.lastName === "Patil") {
+    imgSrc = "images/" + student.lastName + "_" + student.firstName + ".png";
+    imgSrc = imgSrc.toLowerCase();
+  }
+  return imgSrc;
+}
+
+function cleanNameParts(fullName) {
   if (fullName.split(" ").length > 1) {
     firstName = fullName.substring(0, fullName.indexOf(" ")).trim();
     middleName = null;
@@ -82,13 +112,13 @@ function capitalize(str) {
 }
 
 function buildList() {
-  /* displayList(allStudents); */
+  displayList(allStudents);
   console.table(allStudents);
 }
 
 function displayList(students) {
   // clear the list
-  document.querySelector("#student_grid").innerHTML = "";
+  document.querySelector("#grid_students").innerHTML = "";
 
   // build a new list
   students.forEach(displayStudent);
@@ -102,9 +132,11 @@ function displayStudent(student) {
   clone.querySelector("[data-field=firstName]").textContent = student.firstName;
   clone.querySelector("[data-field=middleName]").textContent = student.middleName;
   clone.querySelector("[data-field=lastName]").textContent = student.lastName;
+  clone.querySelector("[data-field=image]").src = student.image;
+  clone.querySelector("[data-field=crest]").src = `images/${student.house}.png`;
 
   console.log(student);
 
   // append clone to list
-  document.querySelector("#student_grid").appendChild(clone);
+  document.querySelector("#grid_students").appendChild(clone);
 }
