@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>HACKED HOGWARTS STUDENT LIST/title></title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked Hogwarts</title>
+    <script nonce="Oui41ohq1hWm22z6" type="text/javascript" src="//self.adblockultimate.net/manager.js?tm=1632427342&amp;lg=true" guid="{77B51C8F-E1E3-427A-AF4C-40E545E756CE}" inwhitelist="false" status="true" autohide="true"></script><link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <header>
-  <img src="" alt="header_hogwarts">
-    <h1 class="glow">HOGWARTS</h1>
-    <h2>School of Witchcraft and Wizardry</h2></header>
-    <section id="ui">
+    <h1>HOGWARTS</h1>
+    <h2>School of Witchcraft and Wizardry</h2>
     <div class="sectionwrapper">
         <div id="inputsearch">
         </div>
         <div id="filter_dropdown">
             <p>Filter by:</p>
-            <button class="filter" data-action="filter" data-filter="*">All</button>
+            <button class="filter" data-action="filter" data-filter="all">All</button>
             <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
             <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
             <button class="filter" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
-            <button class="filter" data-action="filter" data-filter="slytherin">Slytherin</button>
+            <button class="filter" data-action="filter" data-filter="slythein">Slytherin</button>
             <button class="filter" data-action="filter" data-filter="squad">Inquisitorial Squad</button>
             <button class="filter" data-action="filter" data-filter="expelled">Expelled Students</button>
         </div>
         <div id="sort_dropdown">
             <p>Sort by:</p>
-            <button class="sort" data-action="sort" data-sort-direction="asc" data-sort="firstName">Firstname</button>
-            <button class="sort" data-action="sort" data-sort-direction="asc" data-sort="lastName">Lastname</button>
-            <button class="sort" data-action="sort" data-sort-direction="asc" data-sort="gender">Gender</button>
-            <button class="sort" data-action="sort" data-sort-direction="asc" data-sort="house">House</button>
+            <button class="sort" data-action="sort" data-sort="firstname">Firstname</button>
+            <button class="sort" data-action="sort" data-sort="lastname">Lastname</button>
+            <button class="sort" data-action="sort" data-sort="gender">Gender</button>
+            <button class="sort" data-action="sort" data-sort="house">House</button>
         </div>
         <div class="textbox">
             <div class="text_output">
@@ -48,7 +45,7 @@
             </div>
         </div>
     </div>
-  </section>
+</header>
 
 <section id="grid_students">
        <!-- student template will be cloned and inserted here -->
@@ -58,13 +55,13 @@
        <!-- detailed student template will be cloned and inserted here -->
 </section>
     
-<template id="popUpInfo">
+<template id="popupinfo">
     <button id="close">&times;</button>
 <div class="img_grid">
     <img data-field="image" class="image" src="" alt="">
 <div class="img_grid">
     <div class="crest">
-    <img data-field="crest" class="crestimage" src="" alt="">
+    <img data-field="image" class="crestimage" src="" alt="">
     <img data-field="infotext" class="crestname">
 </div>
 <div class="buttons_grid">
@@ -74,11 +71,11 @@
 </div>
 
 <div class="student_info">
-    <p class="infotext" data-field="firstName">FIRSTNAME</p>
-    <p class="infotext" data-field="middleName">MIDDLENAME</p>
-    <p class="infotext" data-field="lastName">LASTNAME</p>
-    <p class="infotext" data-field="nickName">NICKNAME</p>
-    <p class="infotext" data-field="bloodStatus">BLOODSTATUS</p>
+    <p class="infotext" data-field="firstname"></p>
+    <p class="infotext" data-field="middlename"></p>
+    <p class="infotext" data-field="lastname"></p>
+    <p class="infotext" data-field="nickname"></p>
+    <p class="infotext" data-field="bloodstatus"></p>
 </div>
 <div class="expelled_student">
     <button id="expel_button" class="on_off"></button>
@@ -88,14 +85,13 @@
 <template id="student">
     <article class="studentinfo">
         <div id="studenttext">
-            <h2 data-field="firstName" class="name">firstNAME</h2>
-            <h2 data-field="middleName" class="name">MIDDLE NAME</h2>
-            <h2 data-field="lastName" class="name">LAST NAME</h2>
+            <h2 data-field="firstname" class="name"></h2>
+            <h2 data-field="lastname" class="name"></h2>
             <img data-field="image" class="image" src="" alt="">
-            <img data-field="crest">
+            <h3 data-field="housecrest"></h3>
         </div>
     </article>
 </template>
-    <script src="hogwarts.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

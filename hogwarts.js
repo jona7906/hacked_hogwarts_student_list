@@ -202,6 +202,19 @@ function displayStudent(student) {
   clone.querySelector("[data-field=lastName]").textContent = student.lastName;
   clone.querySelector("[data-field=image]").src = student.image;
   clone.querySelector("[data-field=crest]").src = `images/${student.house}.png`;
+  clone.querySelector("article").addEventListener("click", showPopUp);
+
+  function showPopUp() {
+    console.log(this);
+    const clone = document.querySelector("template#popUpInfo").content.cloneNode(true);
+    clone.querySelector("[data-field=firstName]").textContent = student.firstName;
+    clone.querySelector("[data-field=middleName]").textContent = student.middleName;
+    clone.querySelector("[data-field=lastName]").textContent = student.lastName;
+    clone.querySelector("[data-field=image]").src = student.image;
+    clone.querySelector("[data-field=crest]").src = `images/${student.house}.png`;
+    /*  clone.querySelector("article").addEventListener("click", showPopUp); */
+    document.querySelector("#pop_up").appendChild(clone);
+  }
 
   console.log(student);
 

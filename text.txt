@@ -47,4 +47,24 @@ images:
 
  FILTER:
  SORT:
+
+DISPLAY POPUP
+
+- add eventlistener on each student
+- open POPUP
+- display student details
+    - firstName
+    - lastName
+    - middleName
+    - nickName
+    - house
+    + house crest
+    - house color(as background)
+    - blood status(need to calculate from families)
+    
+- display prefect button (on/off)
+- display captain button (on/off)
+- display expell button (on/off)
+
+
  
