@@ -61,10 +61,15 @@ DISPLAY POPUP
     + house crest
     - house color(as background)
     - blood status(need to calculate from families)
-    
+
+- display squad button  
 - display prefect button (on/off)
 - display captain button (on/off)
-- display expell button (on/off)
+- display expell button 
 
 
- 
+ add functionality to buttons;
+ - make buttons add or remove property
+ - make expell button remove student from list
+ - make expell button add student to new list
+ - make expell filter show expell list

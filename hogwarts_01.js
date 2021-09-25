@@ -22,18 +22,63 @@ const Student = {
 };
 
 function start() {
-  document.querySelectorAll("[data-action='filter']").forEach((filterButton) => {
+  /*  document.querySelectorAll("[data-action='filter']").forEach((filterButton) => {
     filterButton.addEventListener("click", setFilter);
-  });
+  }); */
 
   document.querySelectorAll("[data-action='sort']").forEach((sortButton) => {
     sortButton.addEventListener("click", setSorting);
+  });
+
+  document.querySelectorAll("[data-action='filter']").forEach((filterButton) => {
+    filterButton.addEventListener("click", setFilter);
   });
 
   console.log("les get this party started - wup wup");
   loadJSON();
 }
 
+function setFilter(event) {
+  filter = event.target.dataset.filter;
+
+  buildList();
+}
+
+function setSorting(event) {
+  sort = event.target.dataset.sort;
+  sortDir = event.target.dataset.sortDirection;
+  if (sortDir === "asc") {
+    event.target.dataset.sortDirection = "desc";
+    console.log("this is asc");
+    sortDir = "desc";
+  } else {
+    event.target.dataset.sortDirection = "asc";
+    console.log("this is desc");
+    sortDir = "asc";
+  }
+  buildList();
+}
+
+function sortStudents(students) {
+  let studentList = students;
+  let direction = 1;
+  if (sortDir === "asc") {
+    direction = -1;
+  } else {
+    direction = 1;
+  }
+  let sortedStudents = studentList.sort(compareStudents);
+
+  console.log(sort);
+  function compareStudents(a, b) {
+    if (a[sort] < b[sort]) {
+      return -1 * direction;
+    } else {
+      return 1 * direction;
+    }
+  }
+  return sortedStudents;
+}
 async function loadJSON() {
   const response = await fetch("https://petlatkea.dk/2021/hogwarts/students.json ");
   const jsonData = await response.json();
@@ -48,6 +93,23 @@ function prepareObjects(jsonData) {
   buildList();
 }
 
+function buildList() {
+  let currentList = filterStudents(allStudents);
+  let sortedCurrentList = sortStudents(currentList);
+
+  displayList(sortedCurrentList);
+  console.log("this is sorted and filtered list");
+  /*  console.table(sortedCurrentList); */
+}
+
+function displayList(students) {
+  // clear the list
+  document.querySelector("#grid_students").innerHTML = "";
+
+  // build a new list
+  students.forEach(displayStudent);
+}
+
 function prepareObject(jsonObject) {
   const student = Object.create(Student);
   let fullName = jsonObject.fullname.trim();
@@ -55,7 +117,7 @@ function prepareObject(jsonObject) {
   student.firstName = fullName.firstName;
   student.middleName = fullName.middleName;
   student.lastName = fullName.lastName;
-  student.image = getStudentImg(student);
+  /* student.image = getStudentImg(fullName); */
   student.house = cleanHouse(jsonObject.house);
   student.gender = capitalize(jsonObject.gender);
 
@@ -69,9 +131,10 @@ function cleanHouse(house) {
 }
 
 function getStudentImg(student) {
+  let imgSrc, imagefirst, imagelast;
   if (student.lastName.indexOf("-") === -1) {
-    let imagefirst = student.firstName.substring(0, 1);
-    let imagelast = student.lastName;
+    imagefirst = student.firstName.substring(0, 1);
+    imagelast = student.lastName;
     imgSrc = "images/" + imagelast + "_" + imagefirst + ".png";
     imgSrc = imgSrc.toLowerCase();
   } else {
@@ -91,6 +154,7 @@ function getStudentImg(student) {
 }
 
 function cleanNameParts(fullName) {
+  let firstName, middleName, lastName;
   if (fullName.split(" ").length > 1) {
     firstName = fullName.substring(0, fullName.indexOf(" ")).trim();
     middleName = null;
@@ -125,92 +189,6 @@ function capitalize(str) {
   str = str.substring(0, 1).toLocaleUpperCase() + str.substring(1).toLocaleLowerCase();
   return str;
 }
-function setSorting(event) {
-  sort = event.target.dataset.sort;
-  sortDir = event.target.dataset.sortDirection;
-  if (sortDir === "asc") {
-    event.target.dataset.sortDirection = "desc";
-    console.log("this is asc");
-    sortDir = "desc";
-  } else {
-    event.target.dataset.sortDirection = "asc";
-    console.log("this is desc");
-    sortDir = "asc";
-  }
-  buildList();
-}
-
-function setFilter(event) {
-  filter = event.target.dataset.filter;
-
-  buildList();
-}
-
-function buildList() {
-  let currentList = filterStudents(allStudents);
-  let sortedCurrentList = sortStudents(currentList);
-
-  displayList(sortedCurrentList);
-  console.log("this is sorted and filtered list");
-  console.table(sortedCurrentList);
-}
-
-function sortStudents(students) {
-  let studentList = students;
-  let direction = 1;
-  if (sortDir === "asc") {
-    direction = -1;
-  } else {
-    direction = 1;
-  }
-  let sortedStudents = studentList.sort(compareStudents);
-
-  console.log(sort);
-  function compareStudents(a, b) {
-    if (a[sort] < b[sort]) {
-      return -1 * direction;
-    } else {
-      return 1 * direction;
-    }
-  }
-  return sortedStudents;
-}
-
-function filterStudents(students) {
-  console.log(allStudents);
-  console.log(filter);
-  console.log("this is filtering students");
-  console.log("this is a studen filter " + filter);
-  let filteredStudents;
-  if (filter === "gryffindor" || "ravenclaw" || "slytherin" || "hufflepuff") {
-    filteredStudents = students.filter((student) => student.house.toLowerCase(0) === filter);
-  }
-  if (filter === "squad") {
-    filteredStudents = students.filter((student) => student.squad === true);
-  }
-  if (filter === "captain") {
-    filteredStudents = students.filter((student) => student.captain === true);
-  }
-  if (filter === "expelled") {
-    filteredStudents = expellStudentList;
-    /*  students.filter((student) => student.expell === true); */
-  }
-  if (filter === "*") {
-    filteredStudents = students.filter((student) => student.firstName);
-  }
-
-  console.log("this is " + filter);
-  console.table(filteredStudents);
-  return filteredStudents;
-}
-
-function displayList(students) {
-  // clear the list
-  document.querySelector("#grid_students").innerHTML = "";
-
-  // build a new list
-  students.forEach(displayStudent);
-}
 
 function displayStudent(student) {
   // create clone
@@ -239,7 +217,7 @@ function displayStudent(student) {
     clone.querySelector("[data-field=image]").src = student.image;
     clone.querySelector("[data-field=crest]").src = `images/${student.house}.png`;
     /*     clone.querySelector("[data-field=squad]").addEventListener("click", setSquad);
-    clone.querySelector("[data-field=captain]").addEventListener("click", setCaptain); */
+      clone.querySelector("[data-field=captain]").addEventListener("click", setCaptain); */
 
     clone.querySelector("[data-action=expell]").addEventListener("click", expellStudent);
 
@@ -264,11 +242,11 @@ function displayStudent(student) {
         }
       }
       /* let students = allStudents.splice(index);
-      let rest = allStudents.splice(index + 1);
-      allStudents = students + rest;
-
-      expellStudentList.push(student);
-      console.log(expellStudentList); */
+        let rest = allStudents.splice(index + 1);
+        allStudents = students + rest;
+  
+        expellStudentList.push(student);
+        console.log(expellStudentList); */
       buildList();
       console.log("this is the expelled student list");
       console.log(expellStudentList);
@@ -310,11 +288,30 @@ function displayStudent(student) {
   document.querySelector("#grid_students").appendChild(clone);
 }
 
-function removePopUp() {
-  document.querySelector("#pop_up").style.display = "none";
-  document.querySelector("#pop_up").innerHTML = "";
+function filterStudents(students) {
+  console.log(allStudents);
+  console.log(filter);
+  console.log("this is filtering students");
+  console.log("this is a studen filter " + filter);
+  let filteredStudents;
+  if (filter === "gryffindor" || "ravenclaw" || "slytherin" || "hufflepuff") {
+    filteredStudents = students.filter((student) => student.house.toLowerCase(0) === filter);
+  }
+  if (filter === "squad") {
+    filteredStudents = students.filter((student) => student.squad === true);
+  }
+  if (filter === "captain") {
+    filteredStudents = students.filter((student) => student.captain === true);
+  }
+  if (filter === "expelled") {
+    filteredStudents = expellStudentList;
+    /*  students.filter((student) => student.expell === true); */
+  }
+  if (filter === "*") {
+    filteredStudents = students.filter((student) => student.firstName);
+  }
 
-  /*  document.querySelectorAll(".infotext").forEach((text) => (text.textContent = ""));
-  document.querySelectorAll("#pop_up img").forEach((img) => (img.src = ""));
-  document.querySelectorAll("#pop_up button").forEach((button) => (button.innerHTML = "")); */
+  console.log("this is " + filter);
+  console.table(filteredStudents);
+  return filteredStudents;
 }
