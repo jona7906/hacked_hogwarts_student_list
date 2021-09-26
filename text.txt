@@ -73,3 +73,27 @@ DISPLAY POPUP
  - make expell button remove student from list
  - make expell button add student to new list
  - make expell filter show expell list
+
+-------
+
+display the total of list
+- get lenghth of current list
+- display total
+
+
+- add rules to prefect buttons etc
+-- make array of students with prefect and same house;
+--- first make array of students with prefects
+--- filter array of students with prefects by house
+--- if the length of the filtered array is longer than two ALEERT!!
+
+- add rule to squad button
+-- calculate blood status
+-- display on students
+-- for students blood status is half blood (alert)
+-- for students blood status full blod 
+--- apply to squad
+
+- add functionality to search field
+- function get input from search field
+- function filter by input

@@ -6,12 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>HACKED HOGWARTS STUDENT LIST/title></title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lato&display=swap" rel="stylesheet">
   </head>
 
 <body>
 
 <header>
   <img src="" alt="header_hogwarts">
+  <div class="inputsearch">
+    <input type="search" id="searchfunction" placeholder="Search student">
+    <button id="search_button" class="search">Search</button>
+</div>
     <h1 class="glow">HOGWARTS</h1>
     <h2>School of Witchcraft and Wizardry</h2></header>
     <section id="ui">
@@ -36,17 +41,18 @@
             <button class="sort" data-action="sort" data-sort-direction="asc" data-sort="house">House</button>
         </div>
         <div class="textbox">
+            <p>TOTAL:</p>
+            <div class="text_output">
+            </div>
+        </div>
+       <!--  <div class="textbox">
             <div class="text_output">
             </div>
         </div>
         <div class="textbox">
             <div class="text_output">
             </div>
-        </div>
-        <div class="textbox">
-            <div class="text_output">
-            </div>
-        </div>
+        </div> -->
     </div>
   </section>
 
@@ -61,10 +67,10 @@
 <template id="popUpInfo">
     <button id="close">&times;</button>
 <div class="img_grid">
-    <img data-field="image" class="image" src="" alt="">
+    <img data-field="image" class="popupimage" src="" alt="">
 <div class="img_grid">
     <div class="crest">
-    <img data-field="crest" class="crestimage" src="" alt="">
+    <img data-field="crest" class="popupcrest" src="" alt="">
     <img data-field="infotext" class="crestname">
 </div>
 <div class="buttons_grid">
@@ -76,11 +82,11 @@
 </div>
 
 <div class="student_info">
-    <p class="infotext" data-field="firstName">FIRST NAME: </p>
-    <p class="infotext" data-field="middleName">MIDDL ENAME: </p>
-    <p class="infotext" data-field="lastName">LAST NAME: </p>
-    <p class="infotext" data-field="nickName">NICK NAME: </p>
-    <p class="infotext" data-field="bloodStatus">BLOOD STATUS: </p>
+    <p class="infotext" data-field="firstName">Firstname: </p>
+    <p class="infotext" data-field="middleName">Middlename: </p>
+    <p class="infotext" data-field="lastName">Lastname: </p>
+    <p class="infotext" data-field="nickName">Nickname: </p>
+    <p class="infotext" data-field="bloodStatus">Bloodstatus: </p>
 </div>
 <div class="expelled_student">
     <button id="expel_button" data-action="expell" data-field="expell" data-status="off">EXPELL</button>
@@ -90,11 +96,11 @@
 <template id="student">
     <article class="studentinfo">
         <div id="studenttext">
-            <h2 data-field="firstName" class="name">firstNAME</h2>
-            <h2 data-field="middleName" class="name">MIDDLE NAME</h2>
-            <h2 data-field="lastName" class="name">LAST NAME</h2>
-            <img data-field="image" class="image" src="" alt="">
-            <img data-field="crest">
+            <h2 data-field="firstName" class="studentname">firstNAME</h2>
+            <h2 data-field="middleName" class="studentmiddlename">MIDDLE NAME</h2>
+            <h2 data-field="lastName" class="studentname">LAST NAME</h2>
+            <img data-field="image" class="studentimage" src="" alt="">
+            <img data-field="crest" class="studentcrest">
         </div>
     </article>
 </template>
